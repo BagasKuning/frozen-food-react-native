@@ -1,25 +1,18 @@
-import "../global.css";
-
+import AppHeader from "@/components/AppHeader";
 import { Stack } from "expo-router";
+import { View } from "react-native";
+import "../global.css";
+// app/_layout.tsx
 
 export default function Layout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: true,
+    <View style={{ flex: 1 }}>
+      <AppHeader />
 
-        headerStyle: {
-          backgroundColor: "#1498D6",
-        },
-
-        headerTintColor: "#fff",
-
-        headerTitle: "Frozen Food A&Y",
-
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-      }}
-    />
+      {/* 🔥 SCREEN CONTENT */}
+      <View style={{ flex: 1 }}>
+        <Stack screenOptions={{ headerShown: false }} />
+      </View>
+    </View>
   );
 }

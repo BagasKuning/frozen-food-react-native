@@ -1,20 +1,13 @@
 import OrderCard from "@/components/OrderCard";
 import SalesChart from "@/components/SalesChart";
-import { CARD_RADIUS, ORDER_STATUS_CONFIG, PRIMARY_BLUE } from "@/constants";
-import { DUMMY_CHART, DUMMY_ORDER, DUMMY_SUMMARIZE } from "@/constants/home";
+import { CARD_RADIUS, DUMMY_ORDER, PRIMARY_BLUE } from "@/constants";
+import { DUMMY_CHART, DUMMY_SUMMARIZE } from "@/constants/home";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeStats() {
-  const handleAddProduct = () => {
-    console.log("Add product clicked");
-  };
-
-  const handleSeeOrders = () => {
-    console.log("See orders clicked");
-  };
-
   return (
     <SafeAreaView style={{ flex: 1, padding: 16 }}>
       <ScrollView
@@ -60,19 +53,13 @@ export default function HomeStats() {
         <View style={{ marginVertical: 32 }}>
           <Text style={styles.title}>Riwayat Pesanan</Text>
 
-          {DUMMY_ORDER.map((item) => (
-            <OrderCard
-              key={item.id}
-              item={item}
-              statusConfig={ORDER_STATUS_CONFIG}
-              cardRadius={CARD_RADIUS}
-            />
+          {DUMMY_ORDER.slice(0, 4).map((item) => (
+            <OrderCard key={item.id} item={item} />
           ))}
         </View>
 
         <View style={{ flexDirection: "row", gap: 12 }}>
-          <Pressable
-            onPress={handleAddProduct}
+          <View
             style={{
               flex: 1,
               alignItems: "center",
@@ -92,13 +79,15 @@ export default function HomeStats() {
             }}
           >
             <Ionicons name="add" size={32} color="#92400E" />
-            <Text style={{ marginTop: 8, fontWeight: "600", color: "#92400E" }}>
+            <Link
+              href={"/product"}
+              style={{ marginTop: 8, fontWeight: "600", color: "#92400E" }}
+            >
               Tambah Produk
-            </Text>
-          </Pressable>
+            </Link>
+          </View>
 
-          <Pressable
-            onPress={handleSeeOrders}
+          <View
             style={{
               flex: 1,
               alignItems: "center",
@@ -115,10 +104,13 @@ export default function HomeStats() {
             }}
           >
             <Ionicons name="eye" size={32} color="#374151" />
-            <Text style={{ marginTop: 8, fontWeight: "600", color: "#374151" }}>
+            <Link
+              href={"/order"}
+              style={{ marginTop: 8, fontWeight: "600", color: "#92400E" }}
+            >
               Lihat Pesanan
-            </Text>
-          </Pressable>
+            </Link>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

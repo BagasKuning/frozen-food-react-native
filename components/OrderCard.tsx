@@ -1,35 +1,21 @@
+import { CARD_RADIUS, ORDER_STATUS_CONFIG } from "@/constants";
+import { Order } from "@/types";
 import React from "react";
 import { Text, View } from "react-native";
 
-type Product = {
-  id: number;
-  name: string;
-  qty: number;
-  price: number;
-};
-
-type Order = {
-  id: number;
-  name: string;
-  products: Product[];
-  orderStatus: string;
-  total: number;
-};
-
 type Props = {
   item: Order;
-  statusConfig: any;
-  cardRadius: number;
 };
 
-export default function OrderCard({ item, statusConfig, cardRadius }: Props) {
-  const status = statusConfig[item.orderStatus] || statusConfig.pending;
+export default function OrderCard({ item }: Props) {
+  const status =
+    ORDER_STATUS_CONFIG[item.orderStatus] || ORDER_STATUS_CONFIG.pending;
 
   return (
     <View
       style={{
         backgroundColor: "#FFFFFF",
-        borderRadius: cardRadius,
+        borderRadius: CARD_RADIUS,
         padding: 16,
         marginBottom: 16,
         borderWidth: 1,

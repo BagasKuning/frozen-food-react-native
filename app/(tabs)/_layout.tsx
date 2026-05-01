@@ -51,7 +51,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="product/[id]"
+        name="product/index"
         options={{
           title: "Product",
 

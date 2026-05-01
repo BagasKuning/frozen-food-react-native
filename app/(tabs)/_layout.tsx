@@ -51,6 +51,21 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="product/[id]"
+        options={{
+          title: "Product",
+
+          tabBarIcon: ({ color, focused }: any) => (
+            <Ionicons
+              name={focused ? "file-tray" : "file-tray-outline"}
+              size={26}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
         name="order/index"
         options={{
           title: "Pesanan",
